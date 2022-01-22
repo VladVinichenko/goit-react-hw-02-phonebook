@@ -1,0 +1,38 @@
+.statText {
+  color: var(--font-seconary-color);
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+.statValue {
+  color: var(--font-primary-color);
+  font-size: 20px;
+}
+
+.statList {
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  background-color: var(--background-color);
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  width: auto;
+}
+
+.statItem:not(:last-child) {
+  border-bottom: 1px solid var(--font-seconary-color);
+}
+
+.given {
+  font-size: 20px;
+  color: var(--font-seconary-color);
+  padding: 8px 20px;
+  white-space: nowrap;
+}
