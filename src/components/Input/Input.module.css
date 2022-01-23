@@ -11,8 +11,8 @@
   border: none;
   border-radius: var(--card-radius);
   width: 100%;
-  background-color: rgb(32, 32, 32);
-  color: var(--font-seconary-color);
+  background-color: rgb(177, 177, 177);
+  color: rgb(29, 29, 29);
   transition: all 250ms;
 }
 
