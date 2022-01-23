@@ -33,8 +33,11 @@ class App extends Component {
 
   onDeleteContact = (evt) => {
     const newContacts = []
+    const newFilter = []
     this.state.contacts.map(cont => { if (cont.id !== evt.target.parentElement.id) newContacts.push(cont) })
+    this.state.filterInput && this.state.filter.map(cont => { if (cont.id !== evt.target.parentElement.id) newFilter.push(cont) })
     this.setState({ contacts: newContacts })
+    this.onFilterChange()
   }
 
   onInput = (evt) => {
@@ -65,7 +68,6 @@ class App extends Component {
     return (
       <Fragment>
         <Section>
-          {/* <Phonebook onAddContact={this.onAddContact} onInputName={this.onInput} onInputTel={this.onInput} onInputFilter={this.onInputFilter} onDeleteContact={this.onDeleteContact} renderList={renderList} /> */}
           <h1 className={s.title}>Phonebook</h1>
           <ContactForm onAddContact={this.onAddContact} onInputName={this.onInput} onInputTel={this.onInput} />
           <h2 className={s.title}>Contacts</h2>
