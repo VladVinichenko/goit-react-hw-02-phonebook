@@ -26,3 +26,8 @@
   color: var(--font-seconary-color);
   margin: 0 10px;
 }
+
+.text {
+  font-size: 20px;
+  color: red;
+}

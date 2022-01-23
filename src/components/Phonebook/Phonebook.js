@@ -10,9 +10,7 @@ const Phonebook = ({ onAddContact, onInputName, onInputTel, onInputFilter, onDel
       <ContactForm onAddContact={onAddContact} onInputName={onInputName} onInputTel={onInputTel} />
       <h2 className={s.title}>Contacts</h2>
       <Filter onInputFilter={onInputFilter} />
-      {renderList.length > 0 && (
-        <ContactList renderList={renderList} onDeleteContact={onDeleteContact} />
-      )}
+      <ContactList renderList={renderList} onDeleteContact={onDeleteContact} />
     </div>
   )
 }
