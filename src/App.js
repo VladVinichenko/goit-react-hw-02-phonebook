@@ -14,7 +14,8 @@ class App extends Component {
     ],
     filter: '',
     name: '',
-    number: ''
+    number: '',
+    filterInput: ''
   }
   onAddContact = (evt) => {
     evt.preventDefault()
@@ -39,25 +40,29 @@ class App extends Component {
     this.setState(data)
   }
 
+  onFilterChange = () => {
+    this.setState(prevState => {
+      if (prevState.filterInput.trim().length > 0) {
+        const newContacts = []
+        prevState.contacts.map(cont => { if (cont.name.toLowerCase().includes(prevState.filterInput.toLowerCase())) newContacts.push(cont) })
+        console.log(newContacts);
+        return { filter: newContacts }
+      }
+      return { filter: '' }
+    })
+  }
+
   onInputFilter = (evt) => {
-    if (evt.target.value.trim().length > 0) {
-      const newContacts = []
-      this.state.contacts.map(cont => { if (cont.name.toLowerCase().includes(evt.target.value.toLowerCase())) newContacts.push(cont) })
-      console.log(newContacts);
-      this.setState({ filter: newContacts })
-      // this.setState(prevState => {
-      //   console.log(prevState.filter);
-      // })
-      return
-    }
-    // console.log('nono');
+    this.setState({ filterInput: evt.target.value })
+    this.onFilterChange()
   }
 
   render() {
+    const renderList = this.state.filterInput.length > 0 ? this.state.filter : this.state.contacts
     return (
       <Fragment>
         <Section>
-          <Phonebook onAddContact={this.onAddContact} state={this.state} onInputName={this.onInput} onInputTel={this.onInput} onInputFilter={this.onInputFilter} filterList={this.filter} onDeleteContact={this.onDeleteContact} onFilterChange={this.state.filter} />
+          <Phonebook onAddContact={this.onAddContact} onInputName={this.onInput} onInputTel={this.onInput} onInputFilter={this.onInputFilter} onDeleteContact={this.onDeleteContact} renderList={renderList} />
         </Section>
       </Fragment>
     )
