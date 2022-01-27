@@ -34,8 +34,7 @@ class App extends Component {
     }
   }
 
-  onDeleteContact = (evt) => {
-    const removeId = evt.target.dataset.remove
+  onDeleteContact = (removeId) => {
     this.setState({ contacts: this.state.contacts.filter(el => el.id !== removeId) })
     this.state.filterInput && this.setState({ filter: this.state.contacts.filter(el => el.id !== removeId) })
     this.onFilterChange()
