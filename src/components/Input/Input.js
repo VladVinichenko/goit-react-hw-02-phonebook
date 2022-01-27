@@ -1,5 +1,7 @@
 import s from './Input.module.css'
 import { Fragment } from 'react/cjs/react.production.min';
+import propTypes from 'prop-types';
+
 const Input = ({ name, children, inputData, tel }) => {
   return (
     <Fragment>
@@ -8,6 +10,7 @@ const Input = ({ name, children, inputData, tel }) => {
       {!tel ? <input className={s.input}
         onChange={inputData}
         name={name}
+        type="text"
         required
       /> : <input className={s.input}
         onChange={inputData}
@@ -19,6 +22,10 @@ const Input = ({ name, children, inputData, tel }) => {
       />}
     </Fragment>
   )
+}
+
+Input.propTypes = {
+  name: propTypes.string.isRequired
 }
 
 export default Input;

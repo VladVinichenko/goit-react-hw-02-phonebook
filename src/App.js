@@ -6,6 +6,7 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import Filter from "./components/Filter/Filter";
 import s from './App.module.css'
+import propTypes from "prop-types";
 
 class App extends Component {
   state = {
@@ -20,23 +21,23 @@ class App extends Component {
     number: '',
     filterInput: ''
   }
+
+
+
   onAddContact = (evt) => {
     evt.preventDefault()
     if (this.state.name.trim().length > 0) {
       this.setState(prevState => {
-        const contacts = [...prevState.contacts]
-        contacts.push({ name: this.state.name, number: this.state.number, id: nanoid() })
+        const contacts = [...prevState.contacts, { name: this.state.name, number: this.state.number, id: nanoid() }]
         return { contacts: contacts }
       })
     }
   }
 
   onDeleteContact = (evt) => {
-    const newContacts = []
-    const newFilter = []
-    this.state.contacts.map(cont => { if (cont.id !== evt.target.parentElement.id) newContacts.push(cont) })
-    this.state.filterInput && this.state.filter.map(cont => { if (cont.id !== evt.target.parentElement.id) newFilter.push(cont) })
-    this.setState({ contacts: newContacts })
+    const removeId = evt.target.dataset.remove
+    this.setState({ contacts: this.state.contacts.filter(el => el.id !== removeId) })
+    this.state.filterInput && this.setState({ filter: this.state.contacts.filter(el => el.id !== removeId) })
     this.onFilterChange()
   }
 
@@ -49,10 +50,7 @@ class App extends Component {
   onFilterChange = () => {
     this.setState(prevState => {
       if (prevState.filterInput.trim().length > 0) {
-        const newContacts = []
-        prevState.contacts.map(cont => { if (cont.name.toLowerCase().includes(prevState.filterInput.toLowerCase())) newContacts.push(cont) })
-        console.log(newContacts);
-        return { filter: newContacts }
+        return { filter: prevState.contacts.filter(el => el.name.toLowerCase().includes(prevState.filterInput.toLowerCase())) }
       }
       return { filter: '' }
     })
@@ -78,4 +76,6 @@ class App extends Component {
     )
   }
 }
+
+
 export default App

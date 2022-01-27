@@ -1,9 +1,10 @@
 import s from './DeleteButton.module.css'
 
-const DeleteButton = ({ onDeleteContact }) => {
+const DeleteButton = ({ onDeleteContact, id }) => {
   return (
-    <button className={s.button} onClick={onDeleteContact}>Delete</button>
+    <button type="button" className={s.button} onClick={onDeleteContact} data-remove={id}>Delete</button>
   )
 }
+
 
 export default DeleteButton;
